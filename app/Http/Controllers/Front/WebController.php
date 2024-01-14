@@ -6,6 +6,7 @@ use App\Order;
 use Exception;
 use App\Banner;
 use App\Slider;
+use App\Contact;
 use App\Product;
 use App\Model\Job;
 use Dotenv\Validator;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Lib\Enumerations\JobStatus;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\JobApplicationRequest;
 
 class WebController extends Controller
@@ -142,8 +144,9 @@ class WebController extends Controller
                 ->with('success', 'Product successfully removed!');
         }
     }
-     public function processOrder(Request $request)
+    public function processOrder(Request $request)
     {
+        
        $input = $request->except('_token');
         //dd($input);
         try {
@@ -158,4 +161,29 @@ class WebController extends Controller
         }
    
     }
+
+
+public function sendMail(Request $request)
+{
+   $data = new Contact;
+   $data->name = $request->name;
+   $data->email = $request->email;
+   $data->subject = $request->subject;
+   $data->msg = $request->msg;
+   $data->save();
+   $data = [
+   	'name'=>$request->name,
+   	'email'=>$request->email,
+   	'subject'=>$request->subject,
+   	'msg'=>$request->msg,
+   ];
+
+   Mail::send('emails.mailExample',$data,function($mail){
+   		$mail->from('mdashik461@gmail.com');
+   		$mail->to('mdashik461@gmail.com');
+   		$mail->subject('Welcome E-mail');
+   });
+   
+  return redirect()->back()->with('success', 'Mail sends successfully.');
+}
 }

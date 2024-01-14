@@ -55,7 +55,7 @@ Route::get('checkout',  'Front\WebController@checkout')->name('checkout');
 Route::post('order', 'Front\WebController@processOrder')->name('order');
 Route::get('contact', 'Front\ContactController@index')->name('contact');
 
-
+Route::post('/send-mail','Front\WebController@sendMail')->name('mail.msg');
 Route::get('local/{language}', function ($language) {
 
     session(['my_locale' => $language]);

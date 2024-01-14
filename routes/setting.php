@@ -19,5 +19,6 @@ Route::group(['middleware' => ['preventbackbutton', 'auth']], function () {
     Route::resource('product', 'Setting\ProductController');
     // front end settings control
     Route::get('setting-front-page', 'Setting\FrontSettingController@index')->name('front.setting');
+    Route::get('setting-front-orders', 'Setting\ProductController@list_orders')->name('order.list');
     Route::post('setting-front-page-submit', 'Setting\FrontSettingController@store')->name('front.setting.submit');
 });
