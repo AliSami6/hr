@@ -14,7 +14,7 @@ return [
     | any other location as required by the application or its packages.
      */
 
-    'name'             => 'Laravel',
+    'name'             => 'Agro',
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +66,7 @@ return [
     |
      */
 
-    'timezone'         => 'Asia/Dhaka',
+    'timezone'=> 'Asia/Dhaka',
 
     /*
     |--------------------------------------------------------------------------

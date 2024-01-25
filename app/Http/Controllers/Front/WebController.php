@@ -9,6 +9,7 @@ use App\Slider;
 use App\Contact;
 use App\Product;
 use App\Model\Job;
+use App\Newsletter;
 use Dotenv\Validator;
 use App\Model\Services;
 use App\Model\JobApplicant;
@@ -184,6 +185,31 @@ public function sendMail(Request $request)
    		$mail->subject('Welcome E-mail');
    });
    
+  return redirect()->back()->with('success', 'Mail sends successfully.');
+}
+public function newsLetters(Request $request)
+{
+   $data = new Newsletter();
+ 
+   $data->email = $request->email;
+   
+   $data->save();
+  $data = [
+    'email' => $request->email,
+];
+
+Mail::raw('Thanks For Subscribing', function ($message) use ($data) {
+    $message->from('mdashik461@gmail.com', 'Ashik');
+    $message->sender('mdashik461@gmail.com', 'Ashik');
+    $message->to($data['email'], 'Ashik');
+    $message->cc('mdashik461@gmail.com', 'Ashik');
+    $message->bcc('mdashik461@gmail.com', 'Ashik');
+    $message->replyTo('mdashik461@gmail.com', 'Ashik');
+    $message->subject('News Letter To Subscribe');
+    $message->priority(3);
+});
+
+
   return redirect()->back()->with('success', 'Mail sends successfully.');
 }
 }

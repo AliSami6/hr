@@ -31,12 +31,21 @@
                     <h6 class="text-light">Closed</h6>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Newsletter</h5>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                    <div class="position-relative w-100">
-                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-secondary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                      @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissable  mb-20">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <i class="cr-icon glyphicon glyphicon-ok"></i>&nbsp;<strong>{{ session()->get('success') }}</strong>
                     </div>
+                @endif
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>{{$front_setting->contact_title}}</p>
+                    <form action="{{route('mail.news')}}" method="POST">
+                        {{csrf_field()}}
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" name="email" type="email" placeholder="Your email">
+                        <button type="submit" class="btn btn-secondary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

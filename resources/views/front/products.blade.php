@@ -14,10 +14,9 @@
 @endsection
 
 @section('content')
-
-
     <!-- Page Header Start -->
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s"  style="background: url('{{ url('uploads/front/product/'.$front_setting->product_image) }}') center center;">
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s"
+        style="background: url('{{ url('uploads/front/product/' . $front_setting->product_image) }}') center center;">
         <div class="container text-center py-5">
             <h1 class="display-3 text-white mb-4 animated slideInDown">Products</h1>
             <nav aria-label="breadcrumb animated slideInDown">
@@ -33,50 +32,59 @@
 
 
     <!-- Product Start -->
-     <div class="container-xxl py-5">
+    <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissable  mb-20">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <i class="cr-icon glyphicon glyphicon-ok"></i>&nbsp;<strong>{{ session()->get('success') }}</strong>
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissable  mb-20">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>{{ session()->get('error') }}</strong>
+                    </div>
+                @endif
                 <p class="section-title bg-white text-center text-primary px-3">Our Products</p>
                 <h1 class="mb-5">{{ $front_setting->product_title }}</h1>
             </div>
             <div class="row gx-4">
-                   @php
-                $product_delay = 0.1;
-            @endphp
-            @foreach ($products as $item)
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="{{$product_delay}}s">
-                    <div class="product-item">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="{{ url('uploads/product/'.$item->image) }}"
-                                alt="">
-                            <div class="product-overlay">
-                                <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i
-                                        class="bi bi-link"></i></a>
-                                <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i
-                                        class="bi bi-cart"></i></a>
+                @php
+                    $product_delay = 0.1;
+                @endphp
+                @foreach ($products as $item)
+                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="{{ $product_delay }}s">
+                        <div class="product-item">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="{{ url('uploads/product/' . $item->image) }}" alt="">
+                                <div class="product-overlay">
+
+                                    <a class="btn btn-square btn-secondary rounded-circle m-1"
+                                        href="{{ route('add_to_cart', $item->id) }}"><i class="bi bi-cart"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4">
+                                <a class="d-block h5" href="">{{ $item->name }}</a>
+                                <span class="text-primary me-1">{{ $item->discounted_price }} &#2547;</span>
+                                <span class="text-decoration-line-through">{{ $item->price }} &#2547;</span>
                             </div>
                         </div>
-                        <div class="text-center p-4">
-                            <a class="d-block h5" href="">{{$item->name}}</a>
-                            <span class="text-primary me-1">{{$item->discounted_price}} &#2547;</span>
-                            <span class="text-decoration-line-through">{{$item->price}} &#2547;</span>
-                        </div>
                     </div>
-                </div>
-                  @php
-                            // Increment the delay value by 2 for the next iteration
-                            $product_delay = $product_delay + 2;
-                        @endphp
-            @endforeach
-              
+                    @php
+                        // Increment the delay value by 2 for the next iteration
+                        $product_delay = $product_delay + 2;
+                    @endphp
+                @endforeach
+
             </div>
         </div>
     </div>
     <!-- Product End -->
 
-
     <!-- Features Start -->
-      <div class="container-xxl py-5">
+    <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -142,17 +150,13 @@
         </div>
     </div>
     <!-- Features End -->
-
-
 @endsection
 
 @push('javascript')
-
-
     <script>
         $(document).ready(function() {
             // Add smooth scrolling to all links
-           
+
         });
     </script>
 @endpush

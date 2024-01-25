@@ -56,25 +56,10 @@ Route::post('order', 'Front\WebController@processOrder')->name('order');
 Route::get('contact', 'Front\ContactController@index')->name('contact');
 
 Route::post('/send-mail','Front\WebController@sendMail')->name('mail.msg');
+Route::post('/send-news','Front\WebController@newsLetters')->name('mail.news');
 Route::get('local/{language}', function ($language) {
 
     session(['my_locale' => $language]);
 
     return redirect()->back();
 });
-Route::get('agro/home',function(){
-    $services = DB::table('services')->get();
-    return view('index',compact('services'));
-})->name('home');
-Route::get('agro/about',function(){
-    return view('about');
-})->name('about');
-Route::get('agro/service',function(){
-    return view('service');
-})->name('service');
-Route::get('agro/products',function(){
-    return view('products');
-})->name('products');
-Route::get('agro/contact',function(){
-    return view('contact');
-})->name('contact');

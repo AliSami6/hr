@@ -79,4 +79,5 @@ return [
     'front_banner'         => 'ব্যানার সেটিংস',
     'front_product'         => 'পণ্য সেটিংস',
     'front_orders'         => 'অর্ডার সেটিংস',
+    'live_meetings'         => 'মিটিং ম্যানেজ',
 ];
