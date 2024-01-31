@@ -22,7 +22,7 @@ Route::post('job-application', 'Front\WebController@jobApply')->name('job.applic
 
 // front page route
 
-Route::get('login', 'User\LoginController@index');
+Route::get('login', 'User\LoginController@index')->name('login');
 Route::post('login', 'User\LoginController@Auth');
 
 Route::get('mail', 'User\HomeController@mail');
@@ -54,12 +54,11 @@ Route::get('remove-from-cart',  'Front\WebController@remove')->name('remove_from
 Route::get('checkout',  'Front\WebController@checkout')->name('checkout');
 Route::post('order', 'Front\WebController@processOrder')->name('order');
 Route::get('contact', 'Front\ContactController@index')->name('contact');
+Route::get('creer', 'Front\WebController@jobList')->name('creer');
 
 Route::post('/send-mail','Front\WebController@sendMail')->name('mail.msg');
 Route::post('/send-news','Front\WebController@newsLetters')->name('mail.news');
 Route::get('local/{language}', function ($language) {
-
     session(['my_locale' => $language]);
-
     return redirect()->back();
 });

@@ -51,6 +51,23 @@ class WebController extends Controller
         $products = Product::get();
         return view('front.products', ['products' => $products]);
     }
+     public function jobList()
+    {   
+        $published = 1;
+           $job = Job::where('status', '=', $published)
+            ->where('application_end_date', '>=', date('Y-m-d'))
+            ->orderBy('updated_at', 'desc')
+            ->paginate(5);
+        if (request()->ajax()) {
+            $job = Job::where('status', '=', $published)
+                ->where('application_end_date', '>=', date('Y-m-d'))
+                ->paginate(5);
+
+            return \View('front.job_pagination', ['jobs' => $job])->render();
+        }
+       
+        return view('front.creer', ['jobs' => $job]);
+    }
     public function jobDetails($id, $slug)
     {
         $job = Job::find($id);
