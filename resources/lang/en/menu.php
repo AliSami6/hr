@@ -79,5 +79,9 @@ return [
     'front_banner' => 'Front Banner',
     'front_product' => 'Front Product',
     'front_orders' => 'Front Order',
-    'live_meetings' => 'Meeting Management',
+    'live_meetings' => 'Live Meeting ',
+    'messages' => 'Messages',
+    'new' => 'New',
+    'inbox' => 'Inbox',
+    'sent' => 'Sent',
 ];

@@ -11,7 +11,7 @@
             <a href="{{ url('/') }}" class="nav-item nav-link {{ isRouteActive('home') ? 'active' : '' }}">Home</a>
             <a href="{{url('about')}}" class="nav-item nav-link {{ isRouteActive('about') ? 'active' : '' }}">About</a>
             <a href="{{url('services')}}" class="nav-item nav-link {{ isRouteActive('services') ? 'active' : '' }}">Services</a>
-            <a href="{{url('creer')}}" class="nav-item nav-link {{ isRouteActive('creer') ? 'active' : '' }}">Creer</a>
+            <a href="{{url('creer')}}" class="nav-item nav-link {{ isRouteActive('creer') ? 'active' : '' }}">Career</a>
             <a href="{{url('products')}}" class="nav-item nav-link {{ isRouteActive('products') ? 'active' : '' }}">Products</a>
             <a href="{{url('contact')}}" class="nav-item nav-link {{ isRouteActive('contact') ? 'active' : '' }}">Contact</a>
               @if(Auth::check())

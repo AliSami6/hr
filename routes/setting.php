@@ -9,6 +9,7 @@ Route::group(['middleware' => ['preventbackbutton', 'auth']], function () {
         Route::post('printHeadSettings', ['as' => 'printHeadSettings.store', 'uses' => 'Setting\GeneralSettingController@printHeadSettingsStore']);
         Route::put('printHeadSettings/{id}', ['as' => 'printHeadSettings.update', 'uses' => 'Setting\GeneralSettingController@printHeadSettingsUpdate']);
         Route::resource('meeting', 'Setting\LiveMettingController');
+    
     });
 
     // front end setting
@@ -20,4 +21,11 @@ Route::group(['middleware' => ['preventbackbutton', 'auth']], function () {
     Route::get('setting-front-page', 'Setting\FrontSettingController@index')->name('front.setting');
     Route::get('setting-front-orders', 'Setting\ProductController@list_orders')->name('order.list');
     Route::post('setting-front-page-submit', 'Setting\FrontSettingController@store')->name('front.setting.submit');
+    Route::get('message', 'Setting\MessageController@index')->name('message.index');
+    Route::get('message-create', 'Setting\MessageController@create')->name('message.create');
+    Route::get('message-edit/{id}', 'Setting\MessageController@edit')->name('message.edit');
+    Route::post('message-save', 'Setting\MessageController@store')->name('message.store');
+    Route::post('message-remove', 'Setting\MessageController@destroy')->name('message.destroy');
+    Route::put('message-update/{id}', 'Setting\MessageController@update')->name('message.update');
+    Route::get('message-sent', 'Setting\MessageController@show')->name('message.show');
 });

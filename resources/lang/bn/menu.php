@@ -80,4 +80,8 @@ return [
     'front_product'         => 'পণ্য সেটিংস',
     'front_orders'         => 'অর্ডার সেটিংস',
     'live_meetings'         => 'মিটিং সরাসরি',
+    'messages'         => 'বার্তা',
+    'new'         => 'নতুন',
+    'inbox'         => 'ইনবক্স',
+    'sent'         => 'পাঠানো',
 ];
