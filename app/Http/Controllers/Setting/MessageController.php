@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Setting;
 
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -125,6 +126,24 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+         try {
+            $message = Message::find($id);
+
+            $message->delete();
+            DB::commit();
+            $bug = 0;
+        } catch (\Exception $e) {
+            return $e;
+            DB::rollback();
+            $bug = $e->errorInfo[1];
+        }
+
+        if ($bug == 0) {
+            echo 'success';
+        } elseif ($bug == 1451) {
+            echo 'hasForeignKey';
+        } else {
+            echo 'error';
+        }
     }
 }

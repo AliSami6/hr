@@ -19,6 +19,7 @@ class CreateLoansTable extends Migration
             $table->integer('emp_id');
             $table->double('loan_amounts')->default(0);
             $table->string('per_months_pay_amount');
+            $table->enum('status',['accepted','pending'])->default('pending');
             $table->timestamps();
         });
     }

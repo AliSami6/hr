@@ -67,7 +67,7 @@
                                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </a>
                                                 @if (Auth::user()->user_name == 'admin')
-                                                    <a href="{!! route('message.destroy', $value->id) !!}"
+                                                    <a href="{!! route('message.delete', $value->id) !!}"
                                                         data-token="{!! csrf_token() !!}"
                                                         data-id="{!! $value->id !!}"
                                                         class="delete btn btn-danger btn-xs deleteBtn btnColor">

@@ -84,4 +84,5 @@ return [
     'new' => 'New',
     'inbox' => 'Inbox',
     'sent' => 'Sent',
+    'loan' => 'Loan',
 ];

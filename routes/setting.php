@@ -25,7 +25,13 @@ Route::group(['middleware' => ['preventbackbutton', 'auth']], function () {
     Route::get('message-create', 'Setting\MessageController@create')->name('message.create');
     Route::get('message-edit/{id}', 'Setting\MessageController@edit')->name('message.edit');
     Route::post('message-save', 'Setting\MessageController@store')->name('message.store');
-    Route::post('message-remove', 'Setting\MessageController@destroy')->name('message.destroy');
+    Route::delete('message-remove/{id}', 'Setting\MessageController@destroy')->name('message.delete');
     Route::put('message-update/{id}', 'Setting\MessageController@update')->name('message.update');
     Route::get('message-sent', 'Setting\MessageController@show')->name('message.show');
+    Route::get('loan', 'Setting\LoanController@index')->name('loan.index');
+    Route::get('loan-create', 'Setting\LoanController@create')->name('loan.create');
+    Route::get('loan-edit/{id}', 'Setting\LoanController@edit')->name('loan.edit');
+    Route::post('loan-save', 'Setting\LoanController@store')->name('loan.store');
+    Route::put('loan-update/{id}', 'Setting\LoanController@update')->name('loan.update');
+    Route::delete('loan-remove/{id}', 'Setting\LoanController@destroy')->name('loan.delete');
 });
